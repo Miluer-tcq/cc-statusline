@@ -48,7 +48,7 @@
 <text class="small" x="186" y="213">Full / 完整版 · aurora · classic</text>
 <rect x="90" y="230" width="1420" height="6" fill="#8b5cf6"/>
 <text class="mono-small" x="114" y="274">✨ Claude Opus 4.6 │ ⚡ High · 🧠 Think · 🚀 Normal · 🔐 Plan │ ⚙ v2.1.77 │ ● Active</text>
-<text class="mono-small" x="114" y="305">🔋 92.5K/200.0K █████░░░░ 46% │ 🛠 Skills:4 · 🔌 MCP:1 │ 📂 cl/claude-code-statusline │ 🌿 main ✓</text>
+<text class="mono-small" x="114" y="305">🔋 92.5K/200.0K █████░░░░ 46% │ 🛠 Skills:4 · 🔌 MCP:1 │ 📂 cl/cc-statusline │ 🌿 main ✓</text>
 <text class="mono-small" x="114" y="336">💬 Ctx ↑92.5K ↓4.8K │ 📈 Sum ↑128.0K ↓12.4K (140.4K) │ ⏱ API 14s · ⏳ TTL 19s │ 💰 $0.28</text>
 <rect class="terminal" x="90" y="402" width="1420" height="178" rx="24"/>
 <rect x="90" y="402" width="1420" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
@@ -58,7 +58,7 @@
 <text class="small" x="186" y="429">Developer / 开发者版 · ocean · developer</text>
 <rect x="90" y="446" width="1420" height="6" fill="#22d3ee"/>
 <text class="mono-small" x="114" y="490">λ Claude Opus 4.6 │ ≡ High · ∴ Think · - Default │ ● Active</text>
-<text class="mono-small" x="114" y="521">:: cl/claude-code-statusline │ git feat/statusline (+3 ?1) │ [] 92.5K/200.0K █████░░░░ 46%</text>
+<text class="mono-small" x="114" y="521">:: cl/cc-statusline │ git feat/statusline (+3 ?1) │ [] 92.5K/200.0K █████░░░░ 46%</text>
 <text class="mono-small" x="114" y="552">in Ctx ↑92.5K ↓4.8K │ Σ Sum ↑128.0K ↓12.4K (140.4K) │ api 14s · all 19s │ $ $0.28</text>
 <rect class="terminal" x="90" y="618" width="1420" height="132" rx="24"/>
 <rect x="90" y="618" width="1420" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>

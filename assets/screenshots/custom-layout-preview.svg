@@ -84,7 +84,7 @@
 <text class="small" x="732" y="553">Generated custom statusline / 生成后的 custom 脚本</text>
 <rect x="636" y="570" width="874" height="6" fill="#10b981"/>
 <text class="mono-small" x="660" y="614">λ Claude Opus 4.6 │ ● Active │ $ $0.28</text>
-<text class="mono-small" x="660" y="645">:: cl/claude-code-statusline │ git main ✓ │ [] 92.5K/200.0K █████░░░░ 46%</text>
+<text class="mono-small" x="660" y="645">:: cl/cc-statusline │ git main ✓ │ [] 92.5K/200.0K █████░░░░ 46%</text>
 <text class="mono-small" x="660" y="676"></text>
 <text class="mono-small" x="660" y="707">Output file / 输出文件: ~/.claude/statusline.custom.sh</text>
 <text class="mono-small" x="660" y="738">settings.json change / 设置改动: none (generate only)</text>

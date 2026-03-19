@@ -8,7 +8,7 @@
 - English: `cc-statusline` is a Claude Code statusline skill for installing, switching, previewing, fine-tuning, and restoring statuslines with bilingual triggering, preset installs, custom layouts, theme / icon switching, and Windows / macOS / Linux support.
 - 中文：`cc-statusline` 是一个面向 Claude Code 的状态栏 skill，用来安装、切换、预览、微调和恢复状态栏，支持双语触发、预设安装、自定义布局、主题 / 图标切换，以及 Windows / macOS / Linux 三平台。
 
-A bilingual Claude Code statusline skill for preset installation, preview-first activation, interactive customization, theme/icon switching, and cross-platform support on Windows, macOS, and Linux.
+A bilingual Claude Code statusline skill for preset installation, preview-first activation, interactive customization, theme / icon switching, and cross-platform support on Windows, macOS, and Linux.
 
 ## Install this skill
 
@@ -16,14 +16,14 @@ A bilingual Claude Code statusline skill for preset installation, preview-first 
 Send this repository URL to an AI agent that can operate inside Claude Code and ask it to install the skill:
 
 ```text
-https://github.com/Miluer-tcq/claude-code-statusline
+https://github.com/Miluer-tcq/cc-statusline
 ```
 
 Copy-ready prompt:
 
 ```text
 Please install this Claude Code skill for me:
-https://github.com/Miluer-tcq/claude-code-statusline
+https://github.com/Miluer-tcq/cc-statusline
 
 Install target: ~/.claude/skills/cc-statusline
 After installation, tell me how to trigger it.
@@ -35,12 +35,12 @@ Notes:
 - After installation, Claude Code can trigger it with natural language
 
 ### Option 2: Install manually from the GitHub repository
-If you want full manual control, copy the skill directory directly:
+The repository is now flattened, so the **repository root is the skill root**. For manual installation, copy the runtime files into `~/.claude/skills/cc-statusline`:
 
 ```bash
-git clone https://github.com/Miluer-tcq/claude-code-statusline
-mkdir -p ~/.claude/skills
-cp -r claude-code-statusline/cc-statusline ~/.claude/skills/cc-statusline
+git clone https://github.com/Miluer-tcq/cc-statusline
+mkdir -p ~/.claude/skills/cc-statusline
+cp -r cc-statusline/SKILL.md cc-statusline/scripts cc-statusline/presets cc-statusline/themes cc-statusline/icons cc-statusline/references ~/.claude/skills/cc-statusline/
 ```
 
 ## How to use it after installation
@@ -65,35 +65,12 @@ If your current session does not notice the new skill yet, restart the Claude Co
 - updates only the `statusLine` field in `~/.claude/settings.json`
 - uninstall removes only `statusLine` and keeps generated scripts on disk
 
-## What the repository includes
-- a self-contained `cc-statusline` skill directory
-- runtime statusline script
-- cross-platform install scripts
-- preset / theme / icon metadata
-- custom generation and activation wrappers
-- bilingual release docs
-
-## Why there is still a nested `cc-statusline/` directory
-- The repository root `claude-code-statusline/` is the GitHub project wrapper for README files, screenshots, and release assets.
-- The nested `cc-statusline/` directory is the actual self-contained skill that gets installed into `~/.claude/skills/cc-statusline`.
-- So this is a “repo shell + installable skill core” layout, not accidental duplication; the real runtime scripts, preset metadata, and theme metadata live under `cc-statusline/`.
-
-## Installed skill layout
-The final installed skill directory is:
-
-```text
-~/.claude/skills/cc-statusline/
-```
-
-That directory is self-contained and includes:
-- `SKILL.md`
-- `scripts/`
-- `presets/`
-- `themes/`
-- `icons/`
-- `references/`
-
-So Claude Code can trigger it naturally, and you can also call the bundled scripts directly.
+## Current repository layout
+The repository has been flattened:
+- the repository root is now the installable `cc-statusline` skill root
+- `SKILL.md` is the skill entry point
+- `scripts/`, `presets/`, `themes/`, `icons/`, and `references/` are runtime assets
+- `assets/screenshots/` and `dist/` are GitHub presentation / release assets and are not required for runtime
 
 ## Manual use of bundled skill scripts
 If the skill is already installed, you can also call its scripts directly.
@@ -163,8 +140,8 @@ Generated script files stay on disk unless the user explicitly wants them remove
 
 ### 4. `.skill` packaging
 This repository now supports skill-first distribution:
-- copy `cc-statusline/` directly into `~/.claude/skills/cc-statusline`
-- optionally package `cc-statusline/` into a `.skill` file later
+- copy the root skill files into `~/.claude/skills/cc-statusline`
+- optionally package the repository root into a `.skill` file later
 
 ## Presets
 - `Full / 完整版` — closest to the current full Miluer-style layout
@@ -193,11 +170,8 @@ The skill supports:
 - switching icon styles
 - generating `~/.claude/statusline.custom.sh` before activation
 
-Canonical module groups are documented in `cc-statusline/references/modules.md`.
-Trigger phrase examples are documented in `cc-statusline/references/trigger-phrases.md`.
-
-## Manual install
-If you want full manual control, copy the `cc-statusline/` directory into `~/.claude/skills/cc-statusline`, or just follow the install steps above.
+Canonical module groups are documented in `references/modules.md`.
+Trigger phrase examples are documented in `references/trigger-phrases.md`.
 
 ## Screenshots
 
@@ -215,8 +189,3 @@ If you want full manual control, copy the `cc-statusline/` directory into `~/.cl
 
 ### Cross-platform install examples / 三平台安装示例
 ![Cross-platform install examples / 三平台安装示例](assets/screenshots/cross-platform-install.svg)
-
-## Repository layout
-The repository is intentionally split into two layers:
-- root: README files, screenshots, license, and repository-facing assets
-- `cc-statusline/`: the actual installable skill

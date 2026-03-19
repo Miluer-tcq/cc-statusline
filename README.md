@@ -8,7 +8,7 @@
 - 中文：`cc-statusline` 是一个面向 Claude Code 的状态栏 skill，用来安装、切换、预览、微调和恢复状态栏，支持双语触发、预设安装、自定义布局、主题 / 图标切换，以及 Windows / macOS / Linux 三平台。
 - English: `cc-statusline` is a Claude Code statusline skill for installing, switching, previewing, fine-tuning, and restoring statuslines with bilingual triggering, preset installs, custom layouts, theme / icon switching, and Windows / macOS / Linux support.
 
-一个支持中英文触发的 Claude Code 状态栏 skill，提供预设安装、先预览后启用、交互式自定义、主题/图标切换，以及 Windows、macOS、Linux 三平台支持。
+一个支持中英文触发的 Claude Code 状态栏 skill，提供预设安装、先预览后启用、交互式自定义、主题 / 图标切换，以及 Windows、macOS、Linux 三平台支持。
 
 ## 安装这个 skill
 
@@ -16,14 +16,14 @@
 把下面这个仓库链接直接发给支持 Claude Code 文件操作的 AI，然后让它安装这个 skill：
 
 ```text
-https://github.com/Miluer-tcq/claude-code-statusline
+https://github.com/Miluer-tcq/cc-statusline
 ```
 
 可直接复制的提示词：
 
 ```text
 请帮我安装这个 Claude Code skill：
-https://github.com/Miluer-tcq/claude-code-statusline
+https://github.com/Miluer-tcq/cc-statusline
 
 安装目标：~/.claude/skills/cc-statusline
 安装完成后告诉我如何触发它。
@@ -35,12 +35,12 @@ https://github.com/Miluer-tcq/claude-code-statusline
 - 安装完成后，Claude Code 就能按自然语言触发这个 skill
 
 ### 方式 2：通过 GitHub 仓库手动安装
-如果你想手动控制安装过程，可以直接复制 skill 目录：
+当前仓库已经扁平化，**仓库根目录就是 skill 根目录**。手动安装时，把运行所需文件复制到 `~/.claude/skills/cc-statusline`：
 
 ```bash
-git clone https://github.com/Miluer-tcq/claude-code-statusline
-mkdir -p ~/.claude/skills
-cp -r claude-code-statusline/cc-statusline ~/.claude/skills/cc-statusline
+git clone https://github.com/Miluer-tcq/cc-statusline
+mkdir -p ~/.claude/skills/cc-statusline
+cp -r cc-statusline/SKILL.md cc-statusline/scripts cc-statusline/presets cc-statusline/themes cc-statusline/icons cc-statusline/references ~/.claude/skills/cc-statusline/
 ```
 
 ## 安装后如何使用
@@ -65,35 +65,12 @@ cp -r claude-code-statusline/cc-statusline ~/.claude/skills/cc-statusline
 - 只修改 `~/.claude/settings.json` 里的 `statusLine` 字段
 - 卸载时只移除 `statusLine`，默认保留已生成脚本
 
-## 仓库内容
-- 自包含的 `cc-statusline` skill 目录
-- 运行时状态栏脚本
-- 三平台安装脚本
-- 预设 / 主题 / 图标元数据
-- 自定义生成与激活脚本
-- 双语发布文档
-
-## 为什么仓库里还有一个 `cc-statusline/` 目录
-- 仓库根目录 `claude-code-statusline/` 是 GitHub 仓库本身，用来放 README、截图和发布资源。
-- 子目录 `cc-statusline/` 才是实际安装到 `~/.claude/skills/cc-statusline` 的自包含 skill。
-- 也就是说这是“仓库外壳 + 可安装 skill 内核”的结构，不是重复目录；真正的运行脚本、预设、主题元数据都以 `cc-statusline/` 为准。
-
-## Skill 目录结构
-最终安装到本机后的 skill 目录是：
-
-```text
-~/.claude/skills/cc-statusline/
-```
-
-这个目录本身已经自包含，包含：
-- `SKILL.md`
-- `scripts/`
-- `presets/`
-- `themes/`
-- `icons/`
-- `references/`
-
-因此既可以让 Claude Code 自然语言触发，也可以手动调用 skill 内脚本。
+## 当前仓库结构
+当前仓库已经收敛为扁平结构：
+- 根目录就是可安装的 `cc-statusline` skill 根目录
+- `SKILL.md` 是 skill 入口
+- `scripts/`、`presets/`、`themes/`、`icons/`、`references/` 是运行时资源
+- `assets/screenshots/` 和 `dist/` 是 GitHub 展示 / 发布资源，不影响 skill 运行
 
 ## 手动调用 skill 内脚本
 如果你已经安装了 skill，也可以直接调用 skill 目录里的脚本。
@@ -163,8 +140,8 @@ bash ~/.claude/skills/cc-statusline/scripts/uninstall_statusline.sh
 
 ### 4. `.skill` 打包
 当前仓库已经支持以 skill 为核心的分发方式：
-- 直接复制 `cc-statusline/` 到 `~/.claude/skills/cc-statusline`
-- 需要时还可以从 `cc-statusline/` 目录进一步打包为 `.skill`
+- 把仓库根目录中的 skill 文件复制到 `~/.claude/skills/cc-statusline`
+- 需要时可以从当前仓库根目录进一步打包为 `.skill`
 
 ## 预设
 - `Full / 完整版` — 最接近当前 Miluer 风格的完整布局
@@ -183,7 +160,7 @@ bash ~/.claude/skills/cc-statusline/scripts/uninstall_statusline.sh
 - `minimal / 极简`
 - `developer / 开发者`
 
-## 自定义模型
+## 自定义方式
 这个 skill 支持：
 - 直接选择预设
 - 从零开始按分组选择模块
@@ -193,11 +170,8 @@ bash ~/.claude/skills/cc-statusline/scripts/uninstall_statusline.sh
 - 切换图标风格
 - 先生成 `~/.claude/statusline.custom.sh`，再决定是否启用
 
-标准模块分组见 `cc-statusline/references/modules.md`。
-触发词示例见 `cc-statusline/references/trigger-phrases.md`。
-
-## 手动安装
-如果你希望手动控制安装过程，可直接复制 `cc-statusline/` 目录到 `~/.claude/skills/cc-statusline`，或直接参考上方安装步骤。
+标准模块分组见 `references/modules.md`。
+触发词示例见 `references/trigger-phrases.md`。
 
 ## 截图
 
@@ -215,8 +189,3 @@ bash ~/.claude/skills/cc-statusline/scripts/uninstall_statusline.sh
 
 ### 三平台安装示例 / Cross-platform install examples
 ![Cross-platform install examples / 三平台安装示例](assets/screenshots/cross-platform-install.svg)
-
-## 仓库结构
-当前仓库主要分成两层：
-- 根目录：README、截图、License 等仓库展示资源
-- `cc-statusline/`：真正可安装的 skill 本体
