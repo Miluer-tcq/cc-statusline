@@ -174,6 +174,7 @@ load_icons() {
             ICON_API='⏱'
             ICON_TTL='⏳'
             ICON_COST='💰'
+            ICON_PAD='  '
             ;;
         minimal)
             ICON_MODEL='M'
@@ -195,6 +196,7 @@ load_icons() {
             ICON_API='api'
             ICON_TTL='ttl'
             ICON_COST='$'
+            ICON_PAD=' '
             ;;
         developer)
             ICON_MODEL='λ'
@@ -216,6 +218,7 @@ load_icons() {
             ICON_API='api'
             ICON_TTL='all'
             ICON_COST='$'
+            ICON_PAD=' '
             ;;
         *)
             ICON_STYLE='classic'
@@ -451,7 +454,7 @@ fi
 api_duration_ms=$("$JQ" -r '.cost.total_api_duration_ms // 0' <<< "$input" 2>/dev/null)
 total_duration_ms=$("$JQ" -r '.cost.total_duration_ms // 0' <<< "$input" 2>/dev/null)
 
-seg_model="${COLOR_MODEL}${BOLD}${ICON_MODEL}${RESET} ${COLOR_MODEL}${model_name}${RESET}"
+seg_model="${COLOR_MODEL}${BOLD}${ICON_MODEL}${RESET}${ICON_PAD}${COLOR_MODEL}${model_name}${RESET}"
 
 case "$effort_level" in
     low) effort_text='Low' ;;
@@ -460,51 +463,51 @@ case "$effort_level" in
     max) effort_text='Max' ;;
     *) effort_text="$effort_level" ;;
 esac
-seg_effort="${COLOR_EFFORT}${ICON_EFFORT}${RESET} ${COLOR_EFFORT}${effort_text}${RESET}"
+seg_effort="${COLOR_EFFORT}${ICON_EFFORT}${RESET}${ICON_PAD}${COLOR_EFFORT}${effort_text}${RESET}"
 if [ "$thinking_enabled" = "true" ]; then
-    seg_think="${COLOR_THINK}${ICON_THINK}${RESET} ${COLOR_THINK}Think${RESET}"
+    seg_think="${COLOR_THINK}${ICON_THINK}${RESET}${ICON_PAD}${COLOR_THINK}Think${RESET}"
 else
-    seg_think="${COLOR_MUTED}${ICON_THINK}${RESET} ${COLOR_MUTED}Off${RESET}"
+    seg_think="${COLOR_MUTED}${ICON_THINK}${RESET}${ICON_PAD}${COLOR_MUTED}Off${RESET}"
 fi
 if [ "$fast_mode" = "true" ]; then
-    seg_fast="${COLOR_FAST}${ICON_FAST}${RESET} ${COLOR_FAST}Fast${RESET}"
+    seg_fast="${COLOR_FAST}${ICON_FAST}${RESET}${ICON_PAD}${COLOR_FAST}Fast${RESET}"
 else
-    seg_fast="${COLOR_MUTED}${ICON_FAST}${RESET} ${COLOR_MUTED}Normal${RESET}"
+    seg_fast="${COLOR_MUTED}${ICON_FAST}${RESET}${ICON_PAD}${COLOR_MUTED}Normal${RESET}"
 fi
 case "$perm_mode" in
-    auto-accept|auto) seg_perm="${COLOR_PERM_AUTO}${ICON_PERM_AUTO}${RESET} ${COLOR_PERM_AUTO}Auto${RESET}" ;;
-    plan|plan-mode) seg_perm="${COLOR_PERM_PLAN}${ICON_PERM_PLAN}${RESET} ${COLOR_PERM_PLAN}Plan${RESET}" ;;
-    *) seg_perm="${COLOR_PERM_DEFAULT}${ICON_PERM_DEFAULT}${RESET} ${COLOR_PERM_DEFAULT}Default${RESET}" ;;
+    auto-accept|auto) seg_perm="${COLOR_PERM_AUTO}${ICON_PERM_AUTO}${RESET}${ICON_PAD}${COLOR_PERM_AUTO}Auto${RESET}" ;;
+    plan|plan-mode) seg_perm="${COLOR_PERM_PLAN}${ICON_PERM_PLAN}${RESET}${ICON_PAD}${COLOR_PERM_PLAN}Plan${RESET}" ;;
+    *) seg_perm="${COLOR_PERM_DEFAULT}${ICON_PERM_DEFAULT}${RESET}${ICON_PAD}${COLOR_PERM_DEFAULT}Default${RESET}" ;;
 esac
 seg_modes=$(join_segments "$DOT" "$seg_effort" "$seg_think" "$seg_fast" "$seg_perm")
 
 if [ -n "$version" ] && [ "$version" != "null" ]; then
-    seg_version="${COLOR_VERSION}${ICON_VERSION}${RESET} ${COLOR_VERSION}v${version}${RESET}"
+    seg_version="${COLOR_VERSION}${ICON_VERSION}${RESET}${ICON_PAD}${COLOR_VERSION}v${version}${RESET}"
 else
-    seg_version="${COLOR_MUTED}${ICON_VERSION}${RESET} ${COLOR_MUTED}--${RESET}"
+    seg_version="${COLOR_MUTED}${ICON_VERSION}${RESET}${ICON_PAD}${COLOR_MUTED}--${RESET}"
 fi
-seg_active="${COLOR_ACTIVE}${ICON_ACTIVE}${RESET} ${COLOR_ACTIVE}Active${RESET}"
+seg_active="${COLOR_ACTIVE}${ICON_ACTIVE}${RESET}${ICON_PAD}${COLOR_ACTIVE}Active${RESET}"
 
 bc=$(pct_color "$pct_used")
 bar=$(progress_bar "$pct_used")
-seg_context="${COLOR_CONTEXT}${ICON_CONTEXT}${RESET} ${bc}$(format_tokens "$ctx_total_in")${COLOR_MUTED}/${RESET}${COLOR_TEXT}$(format_tokens "$ctx_size")${RESET} ${bc}${bar} ${pct_used}%${RESET}"
+seg_context="${COLOR_CONTEXT}${ICON_CONTEXT}${RESET}${ICON_PAD}${bc}$(format_tokens "$ctx_total_in")${COLOR_MUTED}/${RESET}${COLOR_TEXT}$(format_tokens "$ctx_size")${RESET} ${bc}${bar} ${pct_used}%${RESET}"
 
 if [ "$skills_count" -gt 0 ]; then
-    seg_skills="${COLOR_SKILLS}${ICON_SKILLS}${RESET} ${COLOR_SKILLS}Skills:${skills_count}${RESET}"
+    seg_skills="${COLOR_SKILLS}${ICON_SKILLS}${RESET}${ICON_PAD}${COLOR_SKILLS}Skills:${skills_count}${RESET}"
 else
-    seg_skills="${COLOR_MUTED}${ICON_SKILLS}${RESET} ${COLOR_MUTED}Skills:0${RESET}"
+    seg_skills="${COLOR_MUTED}${ICON_SKILLS}${RESET}${ICON_PAD}${COLOR_MUTED}Skills:0${RESET}"
 fi
 if [ "$mcp_count" -gt 0 ]; then
-    seg_mcp="${COLOR_MCP}${ICON_MCP}${RESET} ${COLOR_MCP}MCP:${mcp_count}${RESET}"
+    seg_mcp="${COLOR_MCP}${ICON_MCP}${RESET}${ICON_PAD}${COLOR_MCP}MCP:${mcp_count}${RESET}"
 else
-    seg_mcp="${COLOR_MUTED}${ICON_MCP}${RESET} ${COLOR_MUTED}MCP:0${RESET}"
+    seg_mcp="${COLOR_MUTED}${ICON_MCP}${RESET}${ICON_PAD}${COLOR_MUTED}MCP:0${RESET}"
 fi
 seg_tools=$(join_segments "$DOT" "$seg_skills" "$seg_mcp")
 
 if [ -n "$full_path" ]; then
-    seg_cwd="${COLOR_CWD}${ICON_CWD}${RESET} ${COLOR_CWD}${full_path}${RESET}"
+    seg_cwd="${COLOR_CWD}${ICON_CWD}${RESET}${ICON_PAD}${COLOR_CWD}${full_path}${RESET}"
 else
-    seg_cwd="${COLOR_CWD}${ICON_CWD}${RESET} ${DIM}~${RESET}"
+    seg_cwd="${COLOR_CWD}${ICON_CWD}${RESET}${ICON_PAD}${DIM}~${RESET}"
 fi
 
 if [ -n "$git_branch" ]; then
@@ -520,19 +523,19 @@ if [ -n "$git_branch" ]; then
         [ "$git_untracked" -gt 0 ] && parts+="${parts:+ }${COLOR_WARN}?${git_untracked}${RESET}"
         git_status="${DIM}(${RESET}${parts}${DIM})${RESET}"
     fi
-    seg_git="${COLOR_GIT}${ICON_GIT}${RESET} ${COLOR_GIT}${git_branch}${RESET} ${git_status}"
+    seg_git="${COLOR_GIT}${ICON_GIT}${RESET}${ICON_PAD}${COLOR_GIT}${git_branch}${RESET} ${git_status}"
 else
-    seg_git="${COLOR_MUTED}${ICON_GIT}${RESET} ${COLOR_MUTED}no repo${RESET}"
+    seg_git="${COLOR_MUTED}${ICON_GIT}${RESET}${ICON_PAD}${COLOR_MUTED}no repo${RESET}"
 fi
 
-seg_ctx_tokens="${COLOR_CTX_TOKENS}${ICON_CTX_TOKENS}${RESET} ${COLOR_CTX_TOKENS}Ctx${RESET} ${COLOR_OK}${AR_UP}${RESET}${COLOR_TEXT}$(format_tokens "$ctx_total_in")${RESET} ${COLOR_WARN}${AR_DN}${RESET}${COLOR_TEXT}$(format_tokens "$ctx_output")${RESET}"
-seg_sum_tokens="${COLOR_SUM_TOKENS}${ICON_SUM_TOKENS}${RESET} ${COLOR_SUM_TOKENS}Sum${RESET} ${COLOR_OK}${AR_UP}${RESET}${COLOR_TEXT}$(format_tokens "$cum_total_in")${RESET} ${COLOR_WARN}${AR_DN}${RESET}${COLOR_TEXT}$(format_tokens "$cum_output")${RESET} ${DIM}(${RESET}${COLOR_SUM_TOKENS}$(format_tokens "$cum_all")${RESET}${DIM})${RESET}"
+seg_ctx_tokens="${COLOR_CTX_TOKENS}${ICON_CTX_TOKENS}${RESET}${ICON_PAD}${COLOR_CTX_TOKENS}Ctx${RESET} ${COLOR_OK}${AR_UP}${RESET}${COLOR_TEXT}$(format_tokens "$ctx_total_in")${RESET} ${COLOR_WARN}${AR_DN}${RESET}${COLOR_TEXT}$(format_tokens "$ctx_output")${RESET}"
+seg_sum_tokens="${COLOR_SUM_TOKENS}${ICON_SUM_TOKENS}${RESET}${ICON_PAD}${COLOR_SUM_TOKENS}Sum${RESET} ${COLOR_OK}${AR_UP}${RESET}${COLOR_TEXT}$(format_tokens "$cum_total_in")${RESET} ${COLOR_WARN}${AR_DN}${RESET}${COLOR_TEXT}$(format_tokens "$cum_output")${RESET} ${DIM}(${RESET}${COLOR_SUM_TOKENS}$(format_tokens "$cum_all")${RESET}${DIM})${RESET}"
 seg_duration=$(join_segments "$DOT" \
-    "${COLOR_DURATION}${ICON_API}${RESET} ${COLOR_DURATION}API${RESET} ${COLOR_TEXT}$(fmt_duration "$api_duration_ms")${RESET}" \
-    "${COLOR_DURATION}${ICON_TTL}${RESET} ${COLOR_DURATION}TTL${RESET} ${COLOR_TEXT}$(fmt_duration "$total_duration_ms")${RESET}")
+    "${COLOR_DURATION}${ICON_API}${RESET}${ICON_PAD}${COLOR_DURATION}API${RESET} ${COLOR_TEXT}$(fmt_duration "$api_duration_ms")${RESET}" \
+    "${COLOR_DURATION}${ICON_TTL}${RESET}${ICON_PAD}${COLOR_DURATION}TTL${RESET} ${COLOR_TEXT}$(fmt_duration "$total_duration_ms")${RESET}")
 seg_cost=''
 if [ -n "$session_cost" ] && [ "$session_cost" != "null" ] && [ "$session_cost" != "0.00" ]; then
-    seg_cost="${COLOR_COST}${ICON_COST}${RESET} ${COLOR_COST}\$${session_cost}${RESET}"
+    seg_cost="${COLOR_COST}${ICON_COST}${RESET}${ICON_PAD}${COLOR_COST}\$${session_cost}${RESET}"
 fi
 
 line_full_1=$(join_segments "$SEP" "$seg_model" "$seg_modes" "$seg_version" "$seg_active")
