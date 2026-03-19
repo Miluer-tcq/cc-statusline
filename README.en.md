@@ -73,6 +73,11 @@ If your current session does not notice the new skill yet, restart the Claude Co
 - custom generation and activation wrappers
 - bilingual release docs
 
+## Why there is still a nested `cc-statusline/` directory
+- The repository root `claude-code-statusline/` is the GitHub project wrapper for README files, screenshots, and release assets.
+- The nested `cc-statusline/` directory is the actual self-contained skill that gets installed into `~/.claude/skills/cc-statusline`.
+- So this is a “repo shell + installable skill core” layout, not accidental duplication; the real runtime scripts, preset metadata, and theme metadata live under `cc-statusline/`.
+
 ## Installed skill layout
 The final installed skill directory is:
 
@@ -192,7 +197,7 @@ Canonical module groups are documented in `cc-statusline/references/modules.md`.
 Trigger phrase examples are documented in `cc-statusline/references/trigger-phrases.md`.
 
 ## Manual install
-See `templates/manual-install.md`.
+If you want full manual control, copy the `cc-statusline/` directory into `~/.claude/skills/cc-statusline`, or just follow the install steps above.
 
 ## Screenshots
 
@@ -212,7 +217,6 @@ See `templates/manual-install.md`.
 ![Cross-platform install examples / 三平台安装示例](assets/screenshots/cross-platform-install.svg)
 
 ## Repository layout
-See `templates/repo-structure.md`.
-
-## Release checklist
-See `templates/release-checklist.md`.
+The repository is intentionally split into two layers:
+- root: README files, screenshots, license, and repository-facing assets
+- `cc-statusline/`: the actual installable skill

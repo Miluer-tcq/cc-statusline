@@ -69,6 +69,11 @@ cp -r claude-code-statusline/cc-statusline ~/.claude/skills/cc-statusline
 - 自定义生成与激活脚本
 - 双语发布文档
 
+## 为什么仓库里还有一个 `cc-statusline/` 目录
+- 仓库根目录 `claude-code-statusline/` 是 GitHub 仓库本身，用来放 README、截图和发布资源。
+- 子目录 `cc-statusline/` 才是实际安装到 `~/.claude/skills/cc-statusline` 的自包含 skill。
+- 也就是说这是“仓库外壳 + 可安装 skill 内核”的结构，不是重复目录；真正的运行脚本、预设、主题元数据都以 `cc-statusline/` 为准。
+
 ## Skill 目录结构
 最终安装到本机后的 skill 目录是：
 
@@ -188,7 +193,7 @@ bash ~/.claude/skills/cc-statusline/scripts/uninstall_statusline.sh
 触发词示例见 `cc-statusline/references/trigger-phrases.md`。
 
 ## 手动安装
-详见 `templates/manual-install.md`。
+如果你希望手动控制安装过程，可直接复制 `cc-statusline/` 目录到 `~/.claude/skills/cc-statusline`，或直接参考上方安装步骤。
 
 ## 截图
 
@@ -208,7 +213,6 @@ bash ~/.claude/skills/cc-statusline/scripts/uninstall_statusline.sh
 ![Cross-platform install examples / 三平台安装示例](assets/screenshots/cross-platform-install.svg)
 
 ## 仓库结构
-详见 `templates/repo-structure.md`。
-
-## 发布清单
-详见 `templates/release-checklist.md`。
+当前仓库主要分成两层：
+- 根目录：README、截图、License 等仓库展示资源
+- `cc-statusline/`：真正可安装的 skill 本体
